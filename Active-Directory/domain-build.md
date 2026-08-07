@@ -25,3 +25,28 @@ Windows Server 2025
 ## Purpose
 
 Glass-DC1 provides Active Directory Domain Services and DNS for the homelab environment.
+## Validation
+
+Verified:
+
+- Static IP configuration
+- DNS points to domain controller
+- AD DS service running
+- DNS service running
+- Netlogon service running
+- Active Directory Web Services running
+
+## Organizational Units Created
+
+Created the following OUs:
+
+- Lab Employees
+- Lab Computers
+- Lab Servers
+- Lab Admin Accounts
+- Groups
+- Lab Service Accounts
+
+## Purpose
+
+The OU structure separates users, computers, servers, administrative accounts, groups, and service accounts to allow targeted Group Policy management and delegation.

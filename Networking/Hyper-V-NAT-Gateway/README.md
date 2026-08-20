@@ -393,47 +393,35 @@ This confirmed that Linux was correctly treating the DC as a local-network desti
 
 ## 8. DNS Troubleshooting
 
-Linux is configured to use the Domain Controller as its DNS server:
+Linux1 was configured to use the Domain Controller as its DNS server:
 
 ```text
 DNS Server: 172.16.10.10
 ```
 
-However, DNS resolution failed.
+Initial DNS resolution failed:
 
-### Testing from Glass-DC1
-
-```powershell
-Resolve-DnsName google.com
+```bash
+ping -c 4 google.com
 ```
 
 Result:
 
 ```text
-The timeout period expired
+Temporary failure in name resolution
 ```
 
-Testing specifically against the DC:
+This established that Internet connectivity was working at the IP layer, but DNS resolution was not.
 
-```powershell
-Resolve-DnsName google.com -Server 172.16.10.10
-```
+### DNS Service Verification
 
-Result:
-
-```text
-DNS server failure
-```
-
-### DNS Port Verification
-
-DNS was confirmed to be listening on port 53.
+On Glass-DC1, DNS was verified to be listening on port 53:
 
 ```powershell
 Get-NetUDPEndpoint -LocalPort 53
 ```
 
-The DNS service was listening on:
+DNS was listening on:
 
 ```text
 172.16.10.10
@@ -444,17 +432,218 @@ Therefore:
 
 ```text
 DNS Service Listening:    YES
-DNS External Resolution:  NOT WORKING
+External DNS Resolution:  NOT WORKING
+```
+
+### Domain Controller Gateway
+
+Glass-DC1 initially had no IPv4 default gateway.
+
+Verification:
+
+```powershell
+Get-NetIPConfiguration
+```
+
+Initial configuration:
+
+```text
+IPv4 Address:         172.16.10.10
+IPv4 Default Gateway: [blank]
+DNS Server:           127.0.0.1
+```
+
+A default route was added:
+
+```powershell
+New-NetRoute `
+    -InterfaceAlias "Ethernet" `
+    -DestinationPrefix "0.0.0.0/0" `
+    -NextHop "172.16.10.1"
+```
+
+The gateway was then verified:
+
+```text
+IPv4 Default Gateway: 172.16.10.1
+```
+
+### Gateway and Internet Testing
+
+The Domain Controller successfully reached the Windows NAT gateway:
+
+```powershell
+ping 172.16.10.1
+```
+
+Result:
+
+```text
+Successful
+```
+
+Internet connectivity was then tested without relying on DNS:
+
+```powershell
+ping 8.8.8.8
+```
+
+Result:
+
+```text
+Successful
+```
+
+This proved that the Domain Controller had a functional path to the Internet.
+
+The troubleshooting path was now:
+
+```text
+Glass-DC1
+172.16.10.10
+     |
+     v
+172.16.10.1
+     |
+     v
+Windows NAT
+     |
+     v
+Internet
+```
+
+### DNS Forwarder Investigation
+
+The configured DNS forwarder was examined:
+
+```powershell
+Get-DnsServerForwarder
+```
+
+The server had the following forwarder configured:
+
+```text
+172.31.240.1
+```
+
+The forwarder was tested directly:
+
+```powershell
+ping 172.31.240.1
+```
+
+Result:
+
+```text
+Request timed out
+```
+
+This identified the configured DNS forwarder as unreachable from the lab network.
+
+### DNS Forwarder Replacement
+
+The unreachable forwarder was removed:
+
+```powershell
+Remove-DnsServerForwarder `
+    -IPAddress 172.31.240.1 `
+    -Force
+```
+
+A new external DNS forwarder was configured:
+
+```powershell
+Add-DnsServerForwarder `
+    -IPAddress 1.1.1.1 `
+    -PassThru
+```
+
+The configuration was verified:
+
+```powershell
+Get-DnsServerForwarder
+```
+
+Result:
+
+```text
+IPAddress
+---------
+1.1.1.1
+```
+
+### External DNS Verification
+
+The external DNS server was tested directly:
+
+```powershell
+Resolve-DnsName google.com -Server 1.1.1.1
+```
+
+The query successfully returned DNS records.
+
+The Domain Controller's DNS service was then tested:
+
+```powershell
+Resolve-DnsName google.com -Server 172.16.10.10
+```
+
+The query successfully resolved.
+
+Finally, the Domain Controller's default DNS configuration was tested:
+
+```powershell
+Resolve-DnsName google.com
+```
+
+External DNS resolution was successful.
+
+### Linux DNS Verification
+
+Linux1 uses the Domain Controller as its DNS server:
+
+```text
+172.16.10.10
+```
+
+After correcting the Domain Controller's gateway and DNS forwarding configuration:
+
+```bash
+ping -c 4 google.com
+```
+
+DNS resolution successfully worked from Linux1.
+
+This verified the complete DNS path:
+
+```text
+Linux1
+172.16.10.30
+      |
+      | DNS Query
+      v
+Glass-DC1
+172.16.10.10
+      |
+      | DNS Forwarder
+      v
+1.1.1.1
+      |
+      v
+Internet DNS
+      |
+      v
+google.com
 ```
 
 ---
 
-# Current State
+## 9. Current State
 
-## Working
+### Working
 
 - Hyper-V `mavlab` virtual switch
-- `172.16.10.0/24` lab network
+- `172.16.10.0/24` private lab network
 - Windows NAT
 - Linux static IP
 - Linux default gateway
@@ -462,22 +651,27 @@ DNS External Resolution:  NOT WORKING
 - Linux → Internet IP connectivity
 - Linux → Domain Controller connectivity
 - Domain Controller → Linux connectivity
+- Domain Controller default gateway
 - DNS service listening on port 53
+- DNS forwarding through `1.1.1.1`
+- Domain Controller → external DNS resolution
+- Linux → external DNS resolution
 
-## Still To Configure / Troubleshoot
+### Still To Configure
 
-- Glass-DC1 default gateway
-- Glass-SVR1 default gateway
-- External DNS resolution through Glass-DC1
-- DNS forwarding
-- Persistent Netplan file permissions
-- Final end-to-end DNS test
+- Glass-SVR2 default gateway
+- Verify Glass-SVR2 Internet connectivity
+- Verify Glass-SVR2 DNS configuration
+- Verify Glass-SVR2 can resolve external DNS
+- Make sure the DC gateway configuration is persistent
+- Resolve Netplan configuration file permission warning
+- Perform final end-to-end network verification
 
 ---
 
-# Troubleshooting Method Used
+## 10. Troubleshooting Method Used
 
-The network was tested one layer at a time:
+The network was tested one layer at a time rather than changing multiple configurations simultaneously.
 
 ```text
 1. Local Network
@@ -489,44 +683,70 @@ The network was tested one layer at a time:
 3. Internet Connectivity
        |
        v
-4. DNS Resolution
+4. DNS Service
+       |
+       v
+5. External DNS Resolution
 ```
 
-Examples:
+### Layer 1 — Local Connectivity
+
+```bash
+ping -c 4 172.16.10.10
+```
+
+Verified Linux1 could communicate with the Domain Controller.
+
+### Layer 2 — Gateway
 
 ```bash
 ping -c 4 172.16.10.1
 ```
 
-Tests the local gateway.
+Verified Linux1 could reach the Windows NAT gateway.
+
+The same test was performed from Glass-DC1 after adding its default gateway.
+
+### Layer 3 — Internet Connectivity
 
 ```bash
 ping -c 4 8.8.8.8
 ```
 
-Tests Internet connectivity without relying on DNS.
+This tests Internet connectivity without depending on DNS.
 
-```bash
-ping -c 4 google.com
+### Layer 4 — DNS Service
+
+```powershell
+Get-NetUDPEndpoint -LocalPort 53
 ```
 
-Tests DNS resolution and connectivity.
+Verified that the DNS service was listening.
 
-This approach helps isolate whether a failure is related to:
+### Layer 5 — External DNS
+
+```powershell
+Resolve-DnsName google.com
+```
+
+Verified whether the DNS server could resolve external names.
+
+This troubleshooting methodology helps isolate failures related to:
 
 - IP configuration
 - Routing
-- Gateway
+- Default gateway
 - NAT
 - Firewall
-- DNS
+- DNS service
+- DNS forwarding
 - Application/service configuration
 
 ---
 
-# Commands Used
+## 11. Commands Used
 
-## Windows / PowerShell
+### Windows / PowerShell
 
 ```powershell
 $PSVersionTable.PSVersion
@@ -539,82 +759,121 @@ New-NetNat `
 
 Get-NetNat
 
-Get-NetFirewallProfile | Select-Object Name, Enabled
+Get-NetIPConfiguration
+
+New-NetRoute `
+    -InterfaceAlias "Ethernet" `
+    -DestinationPrefix "0.0.0.0/0" `
+    -NextHop "172.16.10.1"
+
+Get-NetFirewallProfile |
+    Select-Object Name, Enabled
 
 Get-NetUDPEndpoint -LocalPort 53
 
+Get-DnsServerForwarder
+
+Get-DnsServerRootHint
+
+Remove-DnsServerForwarder `
+    -IPAddress 172.31.240.1 `
+    -Force
+
+Add-DnsServerForwarder `
+    -IPAddress 1.1.1.1 `
+    -PassThru
+
 Resolve-DnsName google.com
 
-Resolve-DnsName google.com -Server 172.16.10.10
+Resolve-DnsName google.com `
+    -Server 172.16.10.10
+
+Resolve-DnsName google.com `
+    -Server 1.1.1.1
 ```
 
-## Linux
+### Linux
 
 ```bash
 ip addr
+
 ip route
+
 ip route get 172.16.10.10
+
 ip neigh
+
 ip neigh show 172.16.10.10
 
 ping -c 4 172.16.10.1
+
 ping -c 4 172.16.10.10
+
 ping -c 4 8.8.8.8
+
 ping -c 4 google.com
 
 sudo netplan get
+
 sudo netplan generate
+
 sudo netplan try
+
+nslookup google.com
+
+resolvectl status
 ```
 
 ---
 
-# Key Concepts Demonstrated
+## 12. Key Concepts Demonstrated
 
 - Hyper-V virtual switches
 - Private virtual networking
 - IPv4 addressing
-- `/24` subnet
-- Default gateway
+- `/24` subnetting
+- Default gateways
 - Static IP configuration
 - Routing tables
+- Default routes
 - ARP / neighbor discovery
 - Windows NAT
 - PowerShell networking commands
+- PowerShell 5.1 vs PowerShell 7
 - Netplan
 - YAML configuration
 - DNS
 - DNS port 53
-- DNS forwarding
+- DNS forwarders
+- DNS root hints
+- External DNS resolution
+- Windows DNS Server
+- Linux DNS client configuration
+- Windows/Linux interoperability
 - Network troubleshooting methodology
 - Layer-by-layer troubleshooting
-- Windows/Linux interoperability
 
 ---
 
-# Next Steps
+## 13. Next Steps
 
-1. Configure the default gateway on Glass-DC1.
-2. Verify Glass-DC1 can reach the Internet.
-3. Configure and verify DNS forwarding on Glass-DC1.
-4. Test external DNS resolution from the DC.
-5. Test DNS resolution from Linux1.
-6. Configure the gateway on Glass-SVR1.
-7. Verify all lab systems have the expected network configuration.
-8. Document the final topology and testing results.
+1. Configure the default gateway on Glass-SVR2.
+2. Verify Glass-SVR2 can reach `172.16.10.1`.
+3. Verify Glass-SVR2 can reach `8.8.8.8`.
+4. Configure Glass-SVR2 to use `172.16.10.10` for DNS.
+5. Verify Glass-SVR2 can resolve external DNS.
+6. Make the Glass-DC1 gateway configuration persistent.
+7. Correct the Netplan file permissions warning on Linux1.
+8. Perform final end-to-end connectivity testing.
+9. Capture screenshots of the completed network configuration.
+10. Document the final MavLab topology.
 
 ---
 
 ## Lab Status
 
-**Networking Foundation: IN PROGRESS**
+**Networking Foundation: OPERATIONAL**
 
-The MavLab private network and NAT infrastructure are operational.
+The MavLab private network, Windows NAT, routing, Domain Controller connectivity, DNS forwarding, and Linux external DNS resolution are operational.
 
-Current blocker:
-
-```text
-Glass-DC1 DNS → External DNS
-```
-
-The next phase is configuring the Domain Controller's default gateway and completing DNS resolution.
+The remaining work is primarily configuration cleanup and bringing Glass-SVR2 into the completed network.

@@ -94,7 +94,7 @@ New-NetNat `
     -Name "MavLabNAT" `
     -InternalIPInterfaceAddressPrefix "172.16.10.0/24"
 ```
-![Seting NAT Configuration](../screenshots/ps7_newnetnat_mavlabNAT)
+![Seting NAT Configuration](screenshots/ps7_newnetnat_mavlabNAT)
 
 
 
@@ -105,7 +105,7 @@ Get-NetNat
 ```
 
 This confirmed that the NAT object was active.
-![Confirming NAT](../screenshots/get-netnat)
+![Confirming NAT](screenshots/get-netnat)
 ---
 
 ## 3. PowerShell Version Troubleshooting
@@ -177,7 +177,7 @@ network:
         addresses:
           - 172.16.10.10
 ```
-![Linux1 Netplan](../screenshots/linuxnetplanconfig)
+![Linux1 Netplan](screenshots/linuxnetplanconfig)
 
 
 ### Important Netplan Concepts
@@ -302,7 +302,7 @@ Result:
 ```text
 DNS resolution failed
 ```
-![DNS Fail](../screenshots/internetworking_dnsfail)
+![DNS Fail](screenshots/internetworking_dnsfail)
 
 This established that basic Internet connectivity works while DNS resolution does not.
 
@@ -328,7 +328,7 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 
 Result:
 
-![Windows Firewall](../screenshots/firewallprofilecheck)
+![Windows Firewall](screenshots/firewallprofilecheck)
 
 The Windows Firewall was therefore not blocking the test traffic.
 

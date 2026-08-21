@@ -1,0 +1,207 @@
+FirstName,LastName,Department,Title,Username,Manager,Contractor,Remote
+Charlotte,Bronte,IT,Systems Administrator,cbronte,it.manager,FALSE,FALSE
+Sara,J Maas,Finance,Financial Analyst,sjmaas,finance.manager,FALSE,TRUE
+Brandon,Sanderson,Legal,Compliance Analyst,bsandrson,legal.manager,FALSE,FALSE
+Rivers,Solomon,HR,HR Specialist,rsolomon,hr.manager,TRUE,TRUE
+Toni,Morrison,Sales,Sales Representative,tmorrison,sales.manager,FALSE,TRUE
+Madeline,Miller,IT,Network Administrator,mmiller,it.manager,FALSE,FALSE
+Pierce,Brown,Finance,Accountant,pbrown,finance.manager,FALSE,TRUE
+Jane,Austen,Legal,Paralegal,jausten,legal.manager,FALSE,FALSE
+George,Orwell,HR,Recruiter,gorwell,hr.manager,FALSE,TRUE
+Virginia,Woolf,Sales,Account Executive,vwoolf,sales.manager,TRUE,TRUE
+James,Baldwin,IT,Help Desk Technician,jbaldwin,it.manager,FALSE,FALSE
+Octavia,Butler,Finance,Budget Analyst,obutler,finance.manager,FALSE,TRUE
+Ursula,Le Guin,Legal,Legal Assistant,uleguin,legal.manager,FALSE,FALSE
+Neil,Gaiman,HR,HR Coordinator,ngaiman,hr.manager,TRUE,TRUE
+N K,Jemisin,Sales,Sales Operations Analyst,nkjemisin,sales.manager,FALSE,TRUE
+Brandon,Mull,IT,Cloud Administrator,bmull,it.manager,FALSE,FALSE
+Robin,Hobb,Finance,Financial Systems Analyst,rhobb,finance.manager,FALSE,TRUE
+Leigh,Bardugo,Legal,Contract Specialist,lbardugo,legal.manager,FALSE,FALSE
+Naomi,Novik,HR,Benefits Specialist,nnovik,hr.manager,TRUE,TRUE
+V E,Schwab,Sales,Business Development Representative,veschwab,sales.manager,FALSE,TRUE
+Erin,Morgenstern,IT,Security Analyst,emorgenstern,it.manager,FALSE,FALSE
+Susanna,Clarke,Finance,Financial Analyst,sclarke,finance.manager,FALSE,TRUE
+Madeline,LEngle,Legal,Legal Operations Specialist,mlengle,legal.manager,FALSE,FALSE
+Lois,Lowry,HR,People Operations Analyst,llowry,hr.manager,TRUE,TRUE
+Suzanne,Collins,Sales,Sales Representative,scollins,sales.manager,FALSE,TRUE
+Veronica,Roth,IT,Systems Administrator,vroth,it.manager,FALSE,FALSE
+Rick,Riordan,Finance,Accountant,rriordan,finance.manager,FALSE,TRUE
+Stephen,King,Legal,Compliance Analyst,sking,legal.manager,FALSE,FALSE
+Terry,Pratchett,HR,HR Specialist,tpratchett,hr.manager,TRUE,TRUE
+Douglas,Adams,Sales,Account Executive,dadams,sales.manager,FALSE,TRUE
+Frank,Herbert,IT,Network Administrator,fherbert,it.manager,FALSE,FALSE
+Isaac,Asimov,Finance,Budget Analyst,iasimov,finance.manager,FALSE,TRUE
+Ray,Bradbury,Legal,Paralegal,rbradbury,legal.manager,FALSE,FALSE
+Philip,Dick,HR,Recruiter,pdick,hr.manager,TRUE,TRUE
+Margaret,Atwood,Sales,Sales Operations Analyst,matwood,sales.manager,FALSE,TRUE
+Kazuo,Ishiguro,IT,Help Desk Technician,kishiguro,it.manager,FALSE,FALSE
+Haruki,Murakami,Finance,Financial Systems Analyst,hmurakami,finance.manager,FALSE,TRUE
+Khaled,Hosseini,Legal,Contract Specialist,khosseini,legal.manager,FALSE,FALSE
+Zadie,Smith,HR,Benefits Specialist,zsmith,hr.manager,TRUE,TRUE
+Colson,Whitehead,Sales,Sales Representative,cwhitehead,sales.manager,FALSE,TRUE
+Jesmyn,Ward,IT,Cloud Administrator,jward,it.manager,FALSE,FALSE
+Nnedi,Okorafor,Finance,Financial Analyst,nokorafor,finance.manager,FALSE,TRUE
+Tommy,Orange,Legal,Legal Assistant,torange,legal.manager,FALSE,FALSE
+Ocean,Vuong,HR,HR Coordinator,ovuong,hr.manager,TRUE,TRUE
+Celeste,Ng,Sales,Account Executive,cng,sales.manager,FALSE,TRUE
+Ann,Patchett,IT,Security Analyst,apatchett,it.manager,FALSE,FALSE
+Donna,Tartt,Finance,Accountant,dtartt,finance.manager,FALSE,TRUE
+Anthony,Doerr,Legal,Compliance Analyst,adoerr,legal.manager,FALSE,FALSE
+Amor,Towles,HR,HR Specialist,atowles,hr.manager,TRUE,TRUE
+Fredrik,Backman,Sales,Business Development Representative,fbackman,sales.manager,FALSE,TRUE
+Sally,Rooney,IT,Systems Administrator,srooney,it.manager,FALSE,FALSE
+Emily,Henry,Finance,Financial Analyst,ehenry,finance.manager,FALSE,TRUE
+Taylor,Jenkins Reid,Legal,Contract Specialist,tjenkinsreid,legal.manager,FALSE,FALSE
+Casey,McQuiston,HR,Recruiter,cmcquiston,hr.manager,TRUE,TRUE
+TJ,Klune,Sales,Sales Representative,tjklune,sales.manager,FALSE,TRUE
+Andy,Weir,IT,Cloud Administrator,aweir,it.manager,FALSE,FALSE
+Martha,Wells,Finance,Budget Analyst,mwells,finance.manager,FALSE,TRUE
+Becky,Chambers,Legal,Paralegal,bchambers,legal.manager,FALSE,FALSE
+James,Corey,HR,HR Coordinator,jcorey,hr.manager,TRUE,TRUE
+Joe,Abercrombie,Sales,Account Executive,jabercrombie,sales.manager,FALSE,TRUE
+Scott,Lynch,IT,Network Administrator,slynch,it.manager,FALSE,FALSE
+Samantha,Shannon,Finance,Financial Systems Analyst,sshannon,finance.manager,FALSE,TRUE
+Ken,Follett,Legal,Legal Operations Specialist,kfollett,legal.manager,FALSE,FALSE
+Michael,Connelly,HR,HR Specialist,mconnelly,hr.manager,TRUE,TRUE
+Lee,Child,Sales,Sales Operations Analyst,lchild,sales.manager,FALSE,TRUE
+John,Grisham,IT,Help Desk Technician,jgrisham,it.manager,FALSE,FALSE
+David,Baldacci,Finance,Accountant,dbaldacci,finance.manager,FALSE,TRUE
+Harlan,Coben,Legal,Compliance Analyst,hcoben,legal.manager,FALSE,FALSE
+Gillian,Flynn,HR,Benefits Specialist,gflynn,hr.manager,TRUE,TRUE
+Tana,French,Sales,Sales Representative,tfrench,sales.manager,FALSE,TRUE
+Louise,Penny,IT,Security Analyst,lpenny,it.manager,FALSE,FALSE
+Agatha,Christie,Finance,Financial Analyst,achristie,finance.manager,FALSE,TRUE
+Dorothy,Sayers,Legal,Legal Assistant,dsayers,legal.manager,FALSE,FALSE
+Arthur,Doyle,HR,Recruiter,adoyle,hr.manager,TRUE,TRUE
+Bram,Stoker,Sales,Account Executive,bstoker,sales.manager,FALSE,TRUE
+Mary,Shelley,IT,Systems Administrator,mshelley,it.manager,FALSE,FALSE
+Oscar,Wilde,Finance,Budget Analyst,owilde,finance.manager,FALSE,TRUE
+Edgar,Poe,Legal,Paralegal,epoe,legal.manager,FALSE,FALSE
+Herman,Melville,HR,HR Coordinator,hmelville,hr.manager,TRUE,TRUE
+Mark,Twain,Sales,Sales Operations Analyst,mtwain,sales.manager,FALSE,TRUE
+Ernest,Hemingway,IT,Network Administrator,ehemingway,it.manager,FALSE,FALSE
+F Scott,Fitzgerald,Finance,Financial Systems Analyst,fsfitzgerald,finance.manager,FALSE,TRUE
+John,Steinbeck,Legal,Contract Specialist,jsteinbeck,legal.manager,FALSE,FALSE
+Alice,Walker,HR,HR Specialist,awalker,hr.manager,TRUE,TRUE
+Maya,Angelou,Sales,Business Development Representative,mangelou,sales.manager,FALSE,TRUE
+James,Joyce,IT,Cloud Administrator,jjoyce,it.manager,FALSE,FALSE
+Leo,Tolstoy,Finance,Financial Analyst,ltolstoy,finance.manager,FALSE,TRUE
+Fyodor,Dostoevsky,Legal,Compliance Analyst,fdostoevsky,legal.manager,FALSE,FALSE
+Gabriel,Marquez,HR,Recruiter,gmarquez,hr.manager,TRUE,TRUE
+Isabel,Allende,Sales,Sales Representative,iallende,sales.manager,FALSE,TRUE
+Chimamanda,Adichie,IT,Security Analyst,cadichie,it.manager,FALSE,FALSE
+Roxane,Gay,Finance,Accountant,rgay,finance.manager,FALSE,TRUE
+Ta Nehisi,Coates,Legal,Legal Operations Specialist,tcoates,legal.manager,FALSE,FALSE
+Brit,Bennett,HR,Benefits Specialist,bbennett,hr.manager,TRUE,TRUE
+Yaa,Gyasi,Sales,Account Executive,ygyasi,sales.manager,FALSE,TRUE
+Saeed,Jones,IT,Help Desk Technician,sjones,it.manager,FALSE,FALSE
+Lauren,Groff,Finance,Budget Analyst,lgroff,finance.manager,FALSE,TRUE
+George,Saunders,Legal,Paralegal,gsaunders,legal.manager,FALSE,FALSE
+Jonathan,Franzen,HR,HR Coordinator,jfranzen,hr.manager,TRUE,TRUE
+Jonathan,Foer,Sales,Sales Operations Analyst,jfoer,sales.manager,FALSE,TRUE
+Maggie,Nelson,IT,Systems Administrator,mnelson,it.manager,FALSE,FALSE
+Sigrid,Nunez,Finance,Financial Systems Analyst,snunez,finance.manager,FALSE,TRUE
+Rachel,Cusk,Legal,Contract Specialist,rcusk,legal.manager,FALSE,FALSE
+Samantha,Irby,HR,HR Specialist,sirby,hr.manager,TRUE,TRUE
+Nora,Roberts,Sales,Sales Representative,nroberts,sales.manager,FALSE,TRUE
+James,Patterson,IT,Network Administrator,jpatterson,it.manager,FALSE,FALSE
+Dan,Brown,Finance,Financial Analyst,danbrown,finance.manager,FALSE,TRUE
+Freida,McFadden,Legal,Compliance Analyst,fmcfadden,legal.manager,FALSE,FALSE
+Lucy,Foley,HR,Recruiter,lfoley,hr.manager,TRUE,TRUE
+Riley,Sager,Sales,Account Executive,rsager,sales.manager,FALSE,TRUE
+Alex,Michaelides,IT,Cloud Administrator,amichaelides,it.manager,FALSE,FALSE
+Silvia,Moreno Garcia,Finance,Accountant,smorenogarcia,finance.manager,FALSE,TRUE
+Nghi,Vo,Legal,Legal Assistant,nvo,legal.manager,FALSE,FALSE
+Tamsyn,Muir,HR,HR Coordinator,tmuir,hr.manager,TRUE,TRUE
+Holly,Black,Sales,Business Development Representative,hblack,sales.manager,FALSE,TRUE
+Sabaa,Tahir,IT,Security Analyst,stahir,it.manager,FALSE,FALSE
+Rick,Yancey,Finance,Budget Analyst,ryancey,finance.manager,FALSE,TRUE
+Scott,Sigler,Legal,Paralegal,ssigler,legal.manager,FALSE,FALSE
+John,Scalzi,HR,HR Specialist,jscalzi,hr.manager,TRUE,TRUE
+Patrick,Rothfuss,Sales,Sales Operations Analyst,prothfuss,sales.manager,FALSE,TRUE
+Jim,Butcher,IT,Systems Administrator,jbutcher,it.manager,FALSE,FALSE
+Seanan,McGuire,Finance,Financial Analyst,smcguire,finance.manager,FALSE,TRUE
+Fonda,Lee,Legal,Contract Specialist,flee,legal.manager,FALSE,FALSE
+RF,Kuang,HR,Benefits Specialist,rfkuang,hr.manager,TRUE,TRUE
+Rebecca,Roanhorse,Sales,Sales Representative,rroanhorse,sales.manager,FALSE,TRUE
+Suyi,Davies,IT,Help Desk Technician,sdavies,it.manager,FALSE,FALSE
+Terry,Brooks,Finance,Financial Systems Analyst,tbrooks,finance.manager,FALSE,TRUE
+Guy,Gavriel Kay,Legal,Compliance Analyst,ggkay,legal.manager,FALSE,FALSE
+Robert,Jordan,HR,Recruiter,rjordan,hr.manager,TRUE,TRUE
+Brent,Weeks,Sales,Account Executive,bweeks,sales.manager,FALSE,TRUE
+Brian,McClellan,IT,Network Administrator,bmcclellan,it.manager,FALSE,FALSE
+Joe,Hill,Finance,Accountant,jhill,finance.manager,FALSE,TRUE
+Richard,Morgan,Legal,Legal Operations Specialist,rmorgan,legal.manager,FALSE,FALSE
+Alastair,Reynolds,HR,HR Coordinator,areynolds,hr.manager,TRUE,TRUE
+Peter,Hamilton,Sales,Business Development Representative,phamilton,sales.manager,FALSE,TRUE
+Adrian,Tchaikovsky,IT,Cloud Administrator,atchaikovsky,it.manager,FALSE,FALSE
+China,Mieville,Finance,Financial Analyst,cmieville,finance.manager,FALSE,TRUE
+Jeff,VanderMeer,Legal,Paralegal,jvandermeer,legal.manager,FALSE,FALSE
+Gene,Wolfe,HR,HR Specialist,gwolfe,hr.manager,TRUE,TRUE
+Lois,Bujold,Sales,Sales Operations Analyst,lbujold,sales.manager,FALSE,TRUE
+Cixin,Liu,IT,Security Analyst,cliu,it.manager,FALSE,FALSE
+Ted,Chiang,Finance,Budget Analyst,tchiang,finance.manager,FALSE,TRUE
+Ken,Liu,Legal,Contract Specialist,kliu,legal.manager,FALSE,FALSE
+Yoon Ha,Lee,HR,Benefits Specialist,yhlee,hr.manager,TRUE,TRUE
+S A,Corey,Sales,Sales Representative,sacorey,sales.manager,FALSE,TRUE
+Mary,Robinette Kowal,IT,Systems Administrator,mkowal,it.manager,FALSE,FALSE
+Andy,Duncan,Finance,Financial Systems Analyst,aduncan,finance.manager,FALSE,TRUE
+John,Connelly,Legal,Compliance Analyst,jconnelly,legal.manager,FALSE,FALSE
+Seanan,McGuire,HR,Recruiter,smcguire2,hr.manager,TRUE,TRUE
+Nora,Jemisin,Sales,Account Executive,njemisin,sales.manager,FALSE,TRUE
+Vernon,God Little,IT,Help Desk Technician,vgod,it.manager,FALSE,FALSE
+Amie,Kaufman,Finance,Financial Analyst,akaufman,finance.manager,FALSE,TRUE
+Jay,Kristoff,Legal,Legal Assistant,jkristoff,legal.manager,FALSE,FALSE
+Ava,Reid,HR,HR Coordinator,areid,hr.manager,TRUE,TRUE
+Hugh,Howey,Sales,Business Development Representative,hhowey,sales.manager,FALSE,TRUE
+Andy,Stanley,IT,Network Administrator,astanley,it.manager,FALSE,FALSE
+Megan,Whalen Turner,Finance,Accountant,mturner,finance.manager,FALSE,TRUE
+Vikram,Seth,Legal,Paralegal,vseth,legal.manager,FALSE,FALSE
+Jhumpa,Lahiri,HR,HR Specialist,jlahiri,hr.manager,TRUE,TRUE
+Salman,Rushdie,Sales,Sales Operations Analyst,srushdie,sales.manager,FALSE,TRUE
+Arundhati,Roy,IT,Cloud Administrator,aroy,it.manager,FALSE,FALSE
+Kazuo,King,Finance,Financial Systems Analyst,kkng,finance.manager,FALSE,TRUE
+Han,Kang,Legal,Contract Specialist,hkang,legal.manager,FALSE,FALSE
+Min Jin,Lee,HR,Benefits Specialist,mjlee,hr.manager,TRUE,TRUE
+Pachinko,Author,Sales,Sales Representative,pachinkoauthor,sales.manager,FALSE,TRUE
+Viet,Thanh Nguyen,IT,Security Analyst,vtnguyen,it.manager,FALSE,FALSE
+Tom,Perrotta,Finance,Budget Analyst,tperrotta,finance.manager,FALSE,TRUE
+Emily,St John Mandel,Legal,Compliance Analyst,emandel,legal.manager,FALSE,FALSE
+Ann,Leckie,HR,Recruiter,aleckie,hr.manager,TRUE,TRUE
+Martha,Wells,Sales,Account Executive,mwells2,sales.manager,FALSE,TRUE
+Rebecca,Makkai,IT,Systems Administrator,rmakkai,it.manager,FALSE,FALSE
+Helen,Oyeyemi,Finance,Financial Analyst,hoyeyemi,finance.manager,FALSE,TRUE
+Nalo,Hopkinson,Legal,Legal Operations Specialist,nhopkinson,legal.manager,FALSE,FALSE
+P Djeli,Clark,HR,HR Coordinator,pdclark,hr.manager,TRUE,TRUE
+Samantha,Shannon,Sales,Sales Representative,sshannon2,sales.manager,FALSE,TRUE
+Alix,Harrows,IT,Network Administrator,aharrows,it.manager,FALSE,FALSE
+Tasha,Suri,Finance,Accountant,tsuri,finance.manager,FALSE,TRUE
+A K,Larkwood,Legal,Paralegal,aklarkwood,legal.manager,FALSE,FALSE
+Katherine,Arden,HR,HR Specialist,karden,hr.manager,TRUE,TRUE
+R F,Kuang,Sales,Account Executive,rfkuang2,sales.manager,FALSE,TRUE
+Seth,Dickinson,IT,Cloud Administrator,sdickinson,it.manager,FALSE,FALSE
+Arkady,Martine,Finance,Financial Systems Analyst,amartine,finance.manager,FALSE,TRUE
+Ann,Leckie,Legal,Compliance Analyst,aleckie2,legal.manager,FALSE,FALSE
+Becky,Chambers,HR,Benefits Specialist,bchambers2,hr.manager,TRUE,TRUE
+John,Scalzi,Sales,Sales Operations Analyst,jscalzi2,sales.manager,FALSE,TRUE
+N K,Jemisin,IT,Security Analyst,nkjemisin2,it.manager,FALSE,FALSE
+Martha,Wells,Finance,Budget Analyst,mwells3,finance.manager,FALSE,TRUE
+Octavia,Butler,Legal,Contract Specialist,obutler2,legal.manager,FALSE,FALSE
+Ursula,Le Guin,HR,Recruiter,uleguin2,hr.manager,TRUE,TRUE
+Neil,Gaiman,Sales,Sales Representative,ngaiman2,sales.manager,FALSE,TRUE
+Naomi,Novik,IT,Systems Administrator,nnovik2,it.manager,FALSE,FALSE
+Leigh,Bardugo,Finance,Financial Analyst,lbardugo2,finance.manager,FALSE,TRUE
+V E,Schwab,Legal,Legal Assistant,veschwab2,legal.manager,FALSE,FALSE
+Erin,Morgenstern,HR,HR Coordinator,emorgenstern2,hr.manager,TRUE,TRUE
+Brandon,Mull,Sales,Business Development Representative,bmull2,sales.manager,FALSE,TRUE
+Robin,Hobb,IT,Help Desk Technician,rhobb2,it.manager,FALSE,FALSE
+Suzanne,Collins,Finance,Accountant,scollins2,finance.manager,FALSE,TRUE
+Veronica,Roth,Legal,Paralegal,vroth2,legal.manager,FALSE,FALSE
+Rick,Riordan,HR,HR Specialist,rriordan2,hr.manager,TRUE,TRUE
+Terry,Pratchett,Sales,Account Executive,tpratchett2,sales.manager,FALSE,TRUE
+Douglas,Adams,IT,Network Administrator,dadams2,it.manager,FALSE,FALSE
+Frank,Herbert,Finance,Financial Systems Analyst,fherbert2,finance.manager,FALSE,TRUE
+Isaac,Asimov,Legal,Compliance Analyst,iasimov2,legal.manager,FALSE,FALSE
+Ray,Bradbury,HR,Benefits Specialist,rbradbury2,hr.manager,TRUE,TRUE
+Philip,Dick,Sales,Sales Representative,pdick2,sales.manager,FALSE,TRUE
+Margaret,Atwood,IT,Cloud Administrator,matwood2,it.manager,FALSE,FALSE

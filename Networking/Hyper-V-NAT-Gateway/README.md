@@ -302,7 +302,7 @@ Result:
 ```text
 DNS resolution failed
 ```
-![DNS Fail](screenshots/internetworking_dnsfail)
+![DNS Fail](../screenshots/internetworking_dnsfail)
 
 This established that basic Internet connectivity works while DNS resolution does not.
 
@@ -328,7 +328,7 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 
 Result:
 
-![Windows Firewall](screenshots/firewallprofilecheck)
+![Windows Firewall](../screenshots/firewallprofilecheck)
 
 The Windows Firewall was therefore not blocking the test traffic.
 

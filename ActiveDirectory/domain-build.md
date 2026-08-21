@@ -47,9 +47,13 @@ The domain controller was built and configured through the following process:
 
 ---
 
-## Active Directory Organizational Structure
 
-The following Organizational Units (OUs) were created:
+
+### Organizational Unit Creation Through PowerShell
+
+The following Organizational Units were created to separate users, computers, servers, administrative accounts, groups, and service accounts.
+
+![Creation of Managers,Employees and Groups OUs](./screenshots/created_managers_employees_groups.png)
 
 ```text
 Domain
@@ -61,24 +65,7 @@ Domain
 ├── Groups
 └── Lab Service Accounts
 ```
-
-The OU structure separates users, computers, servers, administrative accounts, groups, and service accounts.
-
-This structure provides a foundation for:
-
-* Group Policy management
-* Delegation of administrative permissions
-* User and computer organization
-* Security management
-* Future automation
-
-### Organizational Unit Creation Through Powershell
-
-The following screenshot documents the creation of the Active Directory Organizational Units.
-
-![Creation of Organizational Units](/screenshots/created_managers_employees_groups.png)
-
----
+![Active Directory OU Structure](./screenshots/ad_ou_structure.png)
 
 ## User & Group Provisioning
 

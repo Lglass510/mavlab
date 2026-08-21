@@ -51,7 +51,7 @@ The domain controller was built and configured through the following process:
 
 ### Organizational Unit Creation Through PowerShell
 
-The following Organizational Units were created to separate users, computers, servers, administrative accounts, groups, and service accounts.
+The following Organizational Units were created in PowerShell to separate users, computers, servers, administrative accounts, groups, and service accounts.
 
 ![Creation of Managers,Employees and Groups OUs](./screenshots/created_managers_employees_groups.png)
 
@@ -66,17 +66,6 @@ Domain
 └── Lab Service Accounts
 ```
 ![Active Directory OU Structure](./screenshots/ad_ou_structure.png)
-
-## User & Group Provisioning
-
-PowerShell was used to create and manage Active Directory users and security groups rather than manually creating each account through Active Directory Users and Computers (ADUC).
-
-The lab includes separate user populations for:
-
-* Managers
-* Employees
-
-Security groups were created to support group-based administration and access management.
 
 
 ## Validation

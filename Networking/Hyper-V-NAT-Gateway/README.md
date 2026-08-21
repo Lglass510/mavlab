@@ -162,21 +162,6 @@ The Netplan configuration is stored in:
 
 The configuration was updated to include a default route:
 
-```yaml
-network:
-  version: 2
-  ethernets:
-    eth0:
-      dhcp4: false
-      addresses:
-        - 172.16.10.30/24
-      routes:
-        - to: default
-          via: 172.16.10.1
-      nameservers:
-        addresses:
-          - 172.16.10.10
-```
 ![Linux1 Netplan](screenshots/linuxnetplanconfig.png)
 
 

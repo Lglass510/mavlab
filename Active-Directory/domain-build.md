@@ -76,7 +76,7 @@ This structure provides a foundation for:
 
 The following screenshot documents the creation of the Active Directory Organizational Units.
 
-![Creation of Organizational Units](mavlab/Active-Directory/screenshots/creationofAD_Managers_Groups_Employees.png)
+![Creation of Organizational Units](screenshots/creationofAD_Managers_Groups_Employees.png)
 
 ---
 

@@ -72,11 +72,11 @@ This structure provides a foundation for:
 * Security management
 * Future automation
 
-### Organizational Unit Creation
+### Organizational Unit Creation Through Powershell
 
 The following screenshot documents the creation of the Active Directory Organizational Units.
 
-![Creation of Organizational Units](screenshots/ad-ou-creation.png)
+![Creation of Organizational Units](mavlab/Active-Directory/screenshots/creationofAD_Managers_Groups_Employees.png)
 
 ---
 
@@ -91,13 +91,6 @@ The lab includes separate user populations for:
 
 Security groups were created to support group-based administration and access management.
 
-### PowerShell Provisioning
-
-The following screenshot documents the PowerShell-based creation of managers, employees, and Active Directory groups.
-
-![PowerShell Active Directory User and Group Provisioning](screenshots/ad-powershell-user-group-creation.png)
-
----
 
 ## Validation
 

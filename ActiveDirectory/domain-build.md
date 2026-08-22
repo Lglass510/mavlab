@@ -53,17 +53,16 @@ The domain controller was built and configured through the following process:
 
 The following Organizational Units were created in PowerShell to separate users, computers, servers, administrative accounts, groups, and service accounts.
 
-![Creation of Managers,Employees and Groups OUs](./screenshots/created_managers_employees_groups.png)
+![Creation of Managers, Employees and Groups OUs](./screenshots/created_managers_employees_groups.png)
 
 ```text
 Domain
 │
-├── Lab Employees
-├── Lab Computers
-├── Lab Servers
+├── Employees
+├── Computers
+├── Servers
 ├── Lab Admin Accounts
 ├── Groups
-└── Lab Service Accounts
 ```
 ![Active Directory OU Structure](./screenshots/ad_ou_structure.png)
 

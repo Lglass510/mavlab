@@ -28,6 +28,21 @@ The goal isn't just to make something work. **It's to understand why it works.**
 
 ---
 
+## 🌟 Featured Project: Hyper-V NAT & Virtual Network Lab
+
+The most in-depth writeup in this repo — a full build-and-troubleshoot case study covering Hyper-V virtual switching, Windows NAT, and a layered connectivity failure that took real diagnosis to untangle (ICMP failing while TCP/DNS still worked, a missing default gateway on the domain controller, and a DNS forwarder issue underneath it all).
+
+* Built a custom Hyper-V virtual switch and NAT gateway from scratch to get an isolated `172.16.10.0/24` lab talking to the internet
+* Diagnosed connectivity layer by layer — local gateway → internet → DNS — instead of assuming a single failed `ping` meant everything was broken
+* Traced and fixed a DNS forwarder issue and a missing default gateway on the domain controller
+* Documented every step with 13 screenshots and the full command history
+
+**[→ Read the full writeup](./Networking/Hyper-V-NAT-Gateway/)**
+
+![NAT configuration verification](./Networking/Hyper-V-NAT-Gateway/screenshots/get-netnat.png)
+
+---
+
 ## Current Environment
 
 MavLab currently uses a virtualized infrastructure environment built with **Hyper-V**.
@@ -86,8 +101,8 @@ Practicing the fundamentals that connect the rest of the environment:
 
 ### Documentation
 
+* [Hyper-V NAT Gateway](./Networking/Hyper-V-NAT-Gateway/) — featured project, see above
 * [Network Build & Troubleshooting](./Networking/network-build.md)
-* [Hyper-V NAT Gateway](./Networking/Hyper-V-NAT-Gateway/)
 
 ---
 

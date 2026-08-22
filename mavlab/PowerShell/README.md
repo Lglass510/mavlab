@@ -34,14 +34,14 @@ The PowerShell toolkit was developed locally and maintained in the lab Git repos
 ```text
 C:\Projects\mavlab\PowerShell\Modules\MavLabTools
 ```
-![MavLab toolkit inside file structure](Screenshots/mavlab_toolkit.png)
+![MavLab toolkit inside file structure](screenshots/mavlab_toolkit.png)
 
 ### Domain Controller
 
 The toolkit was deployed to:
 
 ```text
-Glass-DC1
+DC1
 ```
 
 The module was installed under the Windows PowerShell module path:
@@ -82,19 +82,22 @@ The toolkit is maintained locally so that changes can be made, tested, and redep
 
 ### Documentation
 
-Screenshots document the creation of the toolkit and the module structure.
+Screenshots document the creation of the toolkit and the module structure, including verifying that the module's directory was discoverable on the local `$PSModulePath`.
+
+![Verifying $PSModulePath includes the MavLabTools directory](screenshots/output_psmodulepath.png)
 
 ---
 
 # PowerShell Remoting
 
-A persistent PowerShell remoting session was created to establish communication with `Glass-DC1`.
-![Remoting session with DC1](Screenshots/created_reusable_pssession.png)
+A persistent PowerShell remoting session was created to establish communication with `DC1`.
+![Remoting session with DC1](screenshots/created_reusable_pssession.png)
+![Remoted into DC1](screenshots/remoted_into_dc1.png)
 
 The session was created using:
 
 ```powershell
-$Session = New-PSSession -VMName "Glass-DC1" -Credential (Get-Credential)
+$Session = New-PSSession -VMName "DC1" -Credential (Get-Credential)
 ```
 
 The session was verified with:
@@ -132,6 +135,12 @@ Copy-Item `
 ```
 
 This demonstrated how PowerShell can be used to deploy reusable administrative tooling to a remote Windows Server.
+
+![Toolkit copied to DC1](screenshots/copied_toolkit_to_dc1.png)
+
+Before importing, the module was confirmed to not yet be loaded on DC1:
+
+![MavLabTools not yet loaded on DC1](screenshots/mavlabtools_notloaded.png)
 
 The module was then loaded on DC1 with:
 
@@ -194,7 +203,7 @@ The function successfully returned Active Directory users, including:
 The output also demonstrated PowerShell remoting metadata such as:
 
 ```text
-PSComputerName : Glass-DC1
+PSComputerName : DC1
 RunspaceId
 ```
 
@@ -228,6 +237,8 @@ Employees
 ├── HR
 └── Finance
 ```
+
+![Original New-LabDepartment logic](screenshots/original_labdept_logic.png)
 
 ---
 
@@ -396,7 +407,7 @@ MavLabTools Module
        ↓
 PowerShell Remoting
        ↓
-Deploy to Glass-DC1
+Deploy to DC1
        ↓
 Import Module
        ↓

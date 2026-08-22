@@ -30,32 +30,3 @@ function New-LabDepartment {
 }
 
 Export-ModuleMember -Function New-LabDepartment
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

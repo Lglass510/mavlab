@@ -1,6 +1,6 @@
-$LabDomain = "mavlab.local"
-$LabDC = "Glass-DC1"
-$LabServer = "Glass-SVR1"
+$LabDomain = "glasslab.local"
+$LabDC = "DC1"
+$LabServer = "SRV2"
 
 $MavLabModulePath = "C:\Projects\mavlab\PowerShell\Modules"
 

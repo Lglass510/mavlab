@@ -28,7 +28,7 @@ The lab also serves as a foundation for future Active Directory, DNS, PowerShell
              +--------------------+--------------------+
              |                    |                    |
              |                    |                    |
-        Glass-DC1            Glass-SVR1             Linux1
+        DC1            SRV2             Linux1
         172.16.10.10         172.16.10.20         172.16.10.30
         AD / DNS                                      Ubuntu
 ```
@@ -40,8 +40,8 @@ The lab also serves as a foundation for future Active Directory, DNS, PowerShell
 | Device | IPv4 Address | Subnet Mask | Default Gateway | DNS Server | Role |
 |---|---|---|---|---|---|
 | Windows 11 Host | `172.16.10.1` | `255.255.255.0` | — | Host DNS | Hyper-V Host / NAT Gateway |
-| Glass-DC1 | `172.16.10.10` | `255.255.255.0` | `172.16.10.1` *(pending)* | `172.16.10.10` | Domain Controller / DNS |
-| Glass-SVR1 | `172.16.10.20` | `255.255.255.0` | `172.16.10.1` *(pending)* | `172.16.10.10` | Windows Server |
+| DC1 | `172.16.10.10` | `255.255.255.0` | `172.16.10.1` *(pending)* | `172.16.10.10` | Domain Controller / DNS |
+| SRV2 | `172.16.10.20` | `255.255.255.0` | `172.16.10.1` *(pending)* | `172.16.10.10` | Windows Server |
 | Linux1 | `172.16.10.30` | `255.255.255.0` | `172.16.10.1` | `172.16.10.10` | Ubuntu Linux Server |
 
 ### Network Details
@@ -70,10 +70,19 @@ The virtual machines are connected to this switch.
 
 The switch provides Layer 2 connectivity between the lab machines.
 
+Switch and adapter creation were verified with:
+
+```powershell
+Get-VMSwitch
+Get-NetAdapter
+```
+
+![Verifying the mavlab switch and adapter](screenshots/getnetswitch_getnetadapter.png)
+
 ### Connected Systems
 
-- Glass-DC1
-- Glass-SVR1
+- DC1
+- SRV2
 - Linux1
 
 All systems are intended to communicate through:
@@ -87,7 +96,26 @@ mavlab
 
 ## 2. Windows NAT Configuration
 
-Windows NAT was configured on the Hyper-V host using PowerShell 7.
+Before NAT could be configured, the Hyper-V host needed a gateway IP address on the `mavlab` switch:
+
+```powershell
+New-NetIPAddress `
+    -IPAddress 172.16.10.1 `
+    -PrefixLength 24 `
+    -InterfaceAlias "vEthernet (mavlab)"
+```
+
+![Assigning the host gateway IP on the mavlab switch](screenshots/newnetipaddress_mavlab.png)
+
+This was verified with:
+
+```powershell
+Get-NetIPAddress -InterfaceAlias "vEthernet (mavlab)"
+```
+
+![Verifying the mavlab gateway IP](screenshots/getnetipaddress_mavlab.png)
+
+Windows NAT was then configured on the Hyper-V host using PowerShell 7.
 
 ```powershell
 New-NetNat `
@@ -160,9 +188,13 @@ The Netplan configuration is stored in:
 /etc/netplan/50-cloud-init.yaml
 ```
 
-The configuration was updated to include a default route:
+The initial configuration had no default route defined:
 
-![Linux1 Netplan](screenshots/linuxnetplanconfig.png)
+![Linux1 Netplan before adding a default route](screenshots/linuxnetplanb4.png)
+
+The configuration was then updated to include a default route:
+
+![Linux1 Netplan after adding a default route](screenshots/linuxnetplanconfig.png)
 
 
 ### Important Netplan Concepts
@@ -230,7 +262,9 @@ This confirmed that Linux now has a default gateway.
 
 ## 6. Connectivity Testing
 
-Connectivity was tested progressively instead of assuming the network was working.
+Connectivity was tested progressively instead of assuming the network was working. An early combined test showed the gateway was reachable while the wider internet was not, which is what prompted breaking the testing into separate stages:
+
+![Gateway reachable, internet unreachable](screenshots/linux1_gatewaypinggood_internetbad.png)
 
 ### Test 1 — Local Gateway
 
@@ -305,7 +339,7 @@ The Domain Controller could reach Linux, and the Windows firewall was checked.
 
 ### Windows Firewall
 
-On Glass-DC1:
+On DC1:
 
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
@@ -324,6 +358,8 @@ On Linux:
 ```bash
 ip neigh
 ```
+
+![ip neigh output](screenshots/ipneighshow.png)
 
 The Domain Controller appeared in the neighbor table:
 
@@ -390,15 +426,19 @@ Result:
 Temporary failure in name resolution
 ```
 
+![DNS resolution failure on Linux1](screenshots/dns_serverfail.png)
+
 This established that Internet connectivity was working at the IP layer, but DNS resolution was not.
 
 ### DNS Service Verification
 
-On Glass-DC1, DNS was verified to be listening on port 53:
+On DC1, DNS was verified to be listening on port 53:
 
 ```powershell
 Get-NetUDPEndpoint -LocalPort 53
 ```
+
+![Confirming DNS is listening on port 53](screenshots/dns_serverportchecks.png)
 
 DNS was listening on:
 
@@ -416,7 +456,7 @@ External DNS Resolution:  NOT WORKING
 
 ### Domain Controller Gateway
 
-Glass-DC1 initially had no IPv4 default gateway.
+DC1 initially had no IPv4 default gateway.
 
 Verification:
 
@@ -478,7 +518,7 @@ This proved that the Domain Controller had a functional path to the Internet.
 The troubleshooting path was now:
 
 ```text
-Glass-DC1
+DC1
 172.16.10.10
      |
      v
@@ -601,7 +641,7 @@ Linux1
       |
       | DNS Query
       v
-Glass-DC1
+DC1
 172.16.10.10
       |
       | DNS Forwarder
@@ -684,7 +724,7 @@ ping -c 4 172.16.10.1
 
 Verified Linux1 could reach the Windows NAT gateway.
 
-The same test was performed from Glass-DC1 after adding its default gateway.
+The same test was performed from DC1 after adding its default gateway.
 
 ### Layer 3 — Internet Connectivity
 
@@ -841,7 +881,7 @@ resolvectl status
 3. Verify Glass-SVR2 can reach `8.8.8.8`.
 4. Configure Glass-SVR2 to use `172.16.10.10` for DNS.
 5. Verify Glass-SVR2 can resolve external DNS.
-6. Make the Glass-DC1 gateway configuration persistent.
+6. Make the DC1 gateway configuration persistent.
 7. Correct the Netplan file permissions warning on Linux1.
 8. Perform final end-to-end connectivity testing.
 9. Capture screenshots of the completed network configuration.

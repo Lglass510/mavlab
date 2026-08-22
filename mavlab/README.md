@@ -109,7 +109,7 @@ Areas include:
 
 ### Documentation
 
-* [Server Core Deployment](./ServerCore/srv2-deployment/)
+* [Server Core Deployment](./ServerCore/srv2-deployment.md)
 
 ---
 

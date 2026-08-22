@@ -6,7 +6,7 @@ A Windows Server 2025 Active Directory lab built to practice domain administrati
 
 | Component          | Configuration                            |
 | ------------------ | ---------------------------------------- |
-| Domain Controller  | Glass-DC1                                |
+| Domain Controller  | DC1                                |
 | Operating System   | Windows Server 2025                      |
 | Directory Services | Active Directory Domain Services (AD DS) |
 | DNS                | Windows DNS Server                       |
@@ -17,7 +17,7 @@ A Windows Server 2025 Active Directory lab built to practice domain administrati
 
 ## Domain Controller
 
-**Server Name:** `Glass-DC1`
+**Server Name:** `DC1`
 
 **Operating System:** Windows Server 2025
 
@@ -26,7 +26,7 @@ A Windows Server 2025 Active Directory lab built to practice domain administrati
 * Active Directory Domain Services (AD DS)
 * Domain Name System (DNS)
 
-Glass-DC1 functions as the primary domain controller and DNS server for the homelab Active Directory environment.
+DC1 functions as the primary domain controller and DNS server for the homelab Active Directory environment.
 
 ---
 
@@ -36,7 +36,7 @@ The domain controller was built and configured through the following process:
 
 1. Installed Windows Server 2025
 2. Configured a static IP address
-3. Renamed the server to `Glass-DC1`
+3. Renamed the server to `DC1`
 4. Installed the DNS Server role
 5. Installed Active Directory Domain Services
 6. Promoted the server to a Domain Controller

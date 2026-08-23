@@ -7,25 +7,29 @@ Export-ModuleMember -Function Get-LabUsers
 
 function New-LabDepartment {
 
-    param (
+     param (
         [Parameter(Mandatory)]
-        [string]$Department
+        [string]$Department,
+
+        [Parameter(Mandatory)]
+        [ValidateSet("Employees", "Managers")]
+        [string]$ParentOU
     )
 
-    $EmployeesOU = "OU=Employees,DC=glasslab,DC=local"
-    $DepartmentOU = "OU=$Department,$EmployeesOU"
+    $ParentOUPath = "OU=$ParentOU,DC=glasslab,DC=local"
+    $DepartmentOU = "OU=$Department,$ParentOU"
 
     try {
         Get-ADOrganizationalUnit -Identity $DepartmentOU -ErrorAction Stop
 
-        Write-Host "Department '$Department' already exists."
+        Write-Host "Department '$Department' already exists under '$ParentOU'."
     }
     catch {
         New-ADOrganizationalUnit `
             -Name $Department `
-            -Path $EmployeesOU
+            -Path $ParentOU
 
-        Write-Host "Department '$Department' created successfully."
+        Write-Host "Department '$Department' created successfully under '$ParentOU'."
     }
 }
 

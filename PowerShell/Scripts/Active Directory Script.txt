@@ -1,0 +1,7 @@
+Active Directory Script
+
+ $Employees = Import-Csv "C:\Users\Administrator\Documents\Data\mavlab_employees. csv"
+ foreach ($Employee in $Employees) {
+ $Department = $Employee. Department
+ $OU = "OU=$Department, OU=Employees, DC=glasslab, DC=local"
+ Write-Host "$($Employee.FirstName) $($Employee.LastName) -> $OU"

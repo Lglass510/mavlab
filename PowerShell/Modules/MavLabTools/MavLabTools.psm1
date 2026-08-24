@@ -17,7 +17,7 @@ function New-LabDepartment {
     )
 
     $ParentOUPath = "OU=$ParentOU,DC=glasslab,DC=local"
-    $DepartmentOU = "OU=$Department,$ParentOU"
+    $DepartmentOU = "OU=$Department,$ParentOUPath"
 
     try {
         Get-ADOrganizationalUnit -Identity $DepartmentOU -ErrorAction Stop
@@ -27,7 +27,7 @@ function New-LabDepartment {
     catch {
         New-ADOrganizationalUnit `
             -Name $Department `
-            -Path $ParentOU
+            -Path $ParentOUPath
 
         Write-Host "Department '$Department' created successfully under '$ParentOU'."
     }
